@@ -52,6 +52,22 @@ declare module "palbase/backend/env" {
       relations: {};
       uniqueKeys: [["id"]];
     };
+    goals: {
+      row: {
+        id: Pg<string, "uuid">;
+        title: Pg<string, "text">;
+        target_minutes: Pg<number, "integer">;
+        created_at: Pg<string, "timestamp">;
+      };
+      insert: {
+        id?: Pg<string, "uuid">;
+        title: Pg<string, "text">;
+        target_minutes?: Pg<number, "integer">;
+        created_at?: Pg<string, "timestamp">;
+      };
+      relations: {};
+      uniqueKeys: [["id"]];
+    };
   }
   interface Schemas {}
 }
