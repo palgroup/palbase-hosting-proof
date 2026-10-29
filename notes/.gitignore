@@ -1,0 +1,3 @@
+node_modules/
+# palbase env:pull writes the address and your own key here: never committed.
+.env.local
