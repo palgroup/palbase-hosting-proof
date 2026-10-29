@@ -1,4 +1,4 @@
-import { defineSchema, defineTable, index, ownedByUser, policy, text, timestamp, uuid } from "palbase/backend";
+import { defineSchema, defineTable, index, integer, ownedByUser, policy, text, timestamp, uuid } from "palbase/backend";
 
 // Each user's notes: theirs alone — row-level security says so, not the routes.
 const notes = defineTable("notes", {
@@ -12,7 +12,16 @@ const notes = defineTable("notes", {
   indexes: (p) => [index("notes_owner_created").on(p.col("owner"), p.col("created_at"))],
 });
 
+// The workouts logged: a table this pull request adds — its preview migrates a database of its own to it.
+const workouts = defineTable("workouts", {
+  columns: {
+    id: uuid().primaryKey().defaultRandom(),
+    minutes: integer(),
+    created_at: timestamp().defaultNow(),
+  },
+});
+
 // Database.public.notes is typed from this file by palbase/palbase-env.d.ts — its rows, inserts, unique keys and
 // relations: palbase db:types writes them there. Run it again when you change the schema.
-const schema = defineSchema("public", { tables: [notes] });
+const schema = defineSchema("public", { tables: [notes, workouts] });
 export default schema;
