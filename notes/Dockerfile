@@ -1,5 +1,5 @@
 # The backend as a machine builds it: its dependencies, then its source, run by Bun.
-FROM oven/bun:1.4.2-alpine
+FROM oven/bun:1.4.4-alpine
 WORKDIR /app
 COPY package.json bun.lock* ./
 RUN bun install --production
