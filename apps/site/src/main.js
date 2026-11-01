@@ -1,1 +1,1 @@
-document.querySelector('#app').textContent = 'apps/site, built on Node ' + (import.meta.env.VITE_NODE_LINE ?? 'its .nvmrc names') + ' — build ' + __BUILD__;
+document.querySelector('#app').textContent = 'apps/site on the branch feature/preview-proof — build ' + __BUILD__;
