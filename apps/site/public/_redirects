@@ -1,0 +1,4 @@
+# Cloudflare Pages / Netlify format: from, to, status
+/old-page /new-page 301
+/blog/* /posts/:splat 302
+/go/:slug /landing?from=:slug 302
