@@ -26,17 +26,6 @@ export class ProofThrows {
   }
 }
 
-@TestUserTemplate({ name: "proof-gone" })
-export class ProofGone {
-  async seed(user: TemplateUser) {
-    await Database.public.notes.insertMany([{ owner: user.id, title: "from a template removed later" }]);
-  }
-
-  async undo(user: TemplateUser) {
-    await Database.public.notes.deleteMany({ where: { owner: user.id } });
-  }
-}
-
 // Added in a push of its own, asked for at once.
 @TestUserTemplate({ name: "proof-fresh" })
 export class ProofFresh {
@@ -63,6 +52,7 @@ export class ProofLatest {
       { owner: user.id, title: "latest two" },
       { owner: user.id, title: "latest three" },
       { owner: user.id, title: "latest four" },
+      { owner: user.id, title: "latest five (the template's second version)" },
     ]);
   }
 
