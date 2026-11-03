@@ -36,3 +36,18 @@ export class ProofGone {
     await Database.public.notes.deleteMany({ where: { owner: user.id } });
   }
 }
+
+// Added in a push of its own: asked for at once, the CLI waits for the build that has it.
+@TestUserTemplate({ name: "proof-new" })
+export class ProofNew {
+  async seed(user: TemplateUser) {
+    await Database.public.notes.insertMany([
+      { owner: user.id, title: "new one" },
+      { owner: user.id, title: "new two" },
+    ]);
+  }
+
+  async undo(user: TemplateUser) {
+    await Database.public.notes.deleteMany({ where: { owner: user.id } });
+  }
+}
