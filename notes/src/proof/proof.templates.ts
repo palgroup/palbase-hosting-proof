@@ -53,3 +53,20 @@ export class ProofFresh {
     await Database.public.notes.deleteMany({ where: { owner: user.id } });
   }
 }
+
+// Added in a push of its own, asked for at once (on the final platform code).
+@TestUserTemplate({ name: "proof-latest" })
+export class ProofLatest {
+  async seed(user: TemplateUser) {
+    await Database.public.notes.insertMany([
+      { owner: user.id, title: "latest one" },
+      { owner: user.id, title: "latest two" },
+      { owner: user.id, title: "latest three" },
+      { owner: user.id, title: "latest four" },
+    ]);
+  }
+
+  async undo(user: TemplateUser) {
+    await Database.public.notes.deleteMany({ where: { owner: user.id } });
+  }
+}
