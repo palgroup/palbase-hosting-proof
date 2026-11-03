@@ -26,17 +26,6 @@ export class ProofThrows {
   }
 }
 
-@TestUserTemplate({ name: "proof-gone" })
-export class ProofGone {
-  async seed(user: TemplateUser) {
-    await Database.public.notes.insertMany([{ owner: user.id, title: "from a template removed later" }]);
-  }
-
-  async undo(user: TemplateUser) {
-    await Database.public.notes.deleteMany({ where: { owner: user.id } });
-  }
-}
-
 // Added in a push of its own: asked for at once, the CLI waits for the build that has it.
 @TestUserTemplate({ name: "proof-new" })
 export class ProofNew {
@@ -61,6 +50,7 @@ export class ProofFresh {
       { owner: user.id, title: "fresh two" },
       { owner: user.id, title: "fresh three" },
       { owner: user.id, title: "fresh four" },
+      { owner: user.id, title: "fresh five (the template's second version)" },
     ]);
   }
 
